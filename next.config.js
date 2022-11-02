@@ -16,7 +16,6 @@ const nextConfig = {
       'localhost:1337',
       'res.cloudinary.com',
       '1.bp.blogspot.com',
-      'dookanpat.s3.ap-southeast-1.amazonaws.com'
     ],
   },
   ...(process.env.NODE_ENV === 'production' && {
