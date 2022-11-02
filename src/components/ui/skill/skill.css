@@ -1,0 +1,15 @@
+.skill-card:hover,
+.activet {
+  z-index: 9;
+  transform: scale(1.25);
+  padding: 38px 50px;
+  transition-duration: 180ms;
+  transition-timing-function: ease-out;
+}
+
+.small-card {
+  @media (min-width: 768px) {
+    transform: scaleY(0.87);
+    align-self: center;
+  }
+}
