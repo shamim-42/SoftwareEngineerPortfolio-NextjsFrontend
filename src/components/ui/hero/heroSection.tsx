@@ -7,7 +7,7 @@ const HeroSection = ({ basicData }: any) => {
       <div className="flex w-full items-center">
         <Image
           src={
-            basicData.image ||
+            basicData?.image ||
             'https://res.cloudinary.com/doer1ffjl/image/upload/v1664441064/Portfolio/shamim_2_frqgj0.png'
           }
           className="rounded-full"

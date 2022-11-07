@@ -6,7 +6,10 @@ export const useCategory = () => {
     ['categoryData'],
     client.categoryData.all
   );
-  const categoryList = data?.data?.attributes;
+
+  const categoryList = data?.data;
+
+  // console.log(categoryList);
 
   return { categoryList };
 };

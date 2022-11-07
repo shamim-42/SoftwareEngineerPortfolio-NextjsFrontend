@@ -72,6 +72,7 @@ class Client {
     all: () => HttpClient.get(`${API_ENDPOINTS.BLOGS}?populate=%2A`),
     getByID: (id: string) => HttpClient.get(`${API_ENDPOINTS.BLOGS}/${id}`),
     newBlog: (blog: any) => HttpClient.post(API_ENDPOINTS.BLOGS, blog),
+    deleteBlog: (id: any) => HttpClient.delete(`${API_ENDPOINTS.BLOGS}/${id}`),
   };
 
   categoryData = {

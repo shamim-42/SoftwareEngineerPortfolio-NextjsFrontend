@@ -8,7 +8,7 @@ const Education = ({ educationData }: any) => {
       <h2 className="my-8 text-left text-3xl font-semibold text-[#515151] md:text-4xl">
         Education
       </h2>
-      {educationData.length > 0 &&
+      {educationData?.length > 0 &&
         educationData?.map((education: EducationData) => (
           <div
             key={education.id}

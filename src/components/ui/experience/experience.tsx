@@ -7,7 +7,7 @@ const Experience = ({ experiences }: any) => {
       <h2 className="my-8 text-left text-3xl font-semibold text-[#515151] md:text-4xl">
         Work Experience
       </h2>
-      {experiences.length > 0 &&
+      {experiences?.length > 0 &&
         experiences?.map(
           (
             experience: {

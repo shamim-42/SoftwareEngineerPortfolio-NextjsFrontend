@@ -1,111 +1,107 @@
-import { Key } from 'react';
-import Alert from '../alert';
+import Button from '@/components/ui/button';
+import Input from '@/components/ui/forms/input';
 import TextEditor from '../editor/editor';
-import Input from '../forms/input';
 
-const NewBlogUI = ({
-  blogText,
+export default function NewBlog({
   categories,
   setBlogText,
-  handleChange,
-  onSubmitBlog,
-  success,
-}: any) => {
+  onSubmit,
+  handleSubmit,
+  register,
+  isLoading,
+}: any) {
   return (
-    <div>
-      <div className="mb-6">
-        <label
-          htmlFor="default-input"
-          className="mb-2 block text-xl font-medium text-gray-900 "
-        >
-          Blog Title
-        </label>
-        <Input
-          type="text"
-          name="title"
-          onBlur={handleChange}
-          id="default-input"
-        />
-      </div>
-      <div className="mb-6">
-        <label
-          htmlFor="default-input"
-          className="mb-2 block text-xl font-medium text-gray-900 "
-        >
-          Blog Thumbnail URL
-        </label>
-        <Input
-          type="text"
-          name="thumbnail"
-          onBlur={handleChange}
-          id="default-input"
-        />
-      </div>
-      <div className="w-96">
-        <label
-          htmlFor="small"
-          className="mb-2 block text-xl font-medium text-gray-900 "
-        >
-          Select a Category
-        </label>
-        <select
-          id="small"
-          name="category"
-          onChange={handleChange}
-          className="mb-6 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 "
-        >
-          {categories?.length > 0 &&
-            categories?.map(
-              (category: {
-                id: Key;
-                attributes: {
-                  name: string;
-                };
-              }) => (
-                <option key={category.id} value={category?.attributes?.name}>
-                  {category?.attributes?.name}
-                </option>
-              )
-            )}
-        </select>
-      </div>
-      <div className="mb-6">
-        <label
-          htmlFor="large-input"
-          className="mb-2 block text-xl font-medium text-gray-900 "
-        >
-          Short Description
-        </label>
-        <input
-          type="text"
-          name="shortDescription"
-          onBlur={handleChange}
-          id="large-input"
-          className="sm:text-md block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 text-gray-900 focus:border-blue-500 focus:ring-blue-500 "
-        />
-      </div>
-      <TextEditor setBlogText={setBlogText} />
-      <div className="my-5 flex justify-center">
-        <button
-          type="button"
-          onClick={onSubmitBlog}
-          className="mb-2 rounded-lg bg-purple-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 "
-        >
-          Create Blog
-        </button>
-      </div>
-      {success && (
-        <Alert className="mb-4" message="Blog Created Successfully" />
-      )}
-      <div className="my-5">
-        <h2 className="p-2 text-center text-2xl font-bold">Preview</h2>
-        <div
-          dangerouslySetInnerHTML={{ __html: blogText.content }}
-          className="border p-5"
-        />
-      </div>
+    <div className="mx-auto flex h-full min-h-screen w-screen flex-col justify-center bg-light py-6 px-5 drop-shadow-lg sm:p-8 md:h-auto md:min-h-0 md:max-w-[790px] md:rounded-xl">
+      <>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <></>
+          <Input
+            label="Title"
+            {...register('title', { required: true })}
+            type="text"
+            variant="outline"
+            className="mb-5"
+          />
+          <Input
+            label="Thumbnail URL"
+            {...register('thumbnail', { required: true })}
+            type="file"
+            variant="outline"
+            className="mb-5 "
+          />
+
+          {/* <label
+            className="mb-2 block text-sm font-medium text-gray-900 "
+            htmlFor="user_avatar"
+          >
+            Upload file
+          </label>
+          <input
+            className="block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm text-gray-900 focus:outline-none "
+            aria-describedby="user_avatar_help"
+            id="user_avatar"
+            type="file"
+          />
+          <div className="mt-1 text-sm text-gray-500 " id="user_avatar_help">
+            A profile picture is useful to confirm your are logged into your
+            account
+          </div> */}
+
+          <Input
+            label="Short Description"
+            {...register('shortDescription', { required: true })}
+            type="text"
+            variant="outline"
+            className="mb-5"
+            dimension="big"
+          />
+
+          <div className="w-96">
+            <label
+              htmlFor="category"
+              className="mb-2 block text-sm font-medium text-gray-900 "
+            >
+              Select a Category
+            </label>
+            <select
+              id="category"
+              name="category"
+              {...register('category', { required: true })}
+              className="mb-6 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 "
+              defaultValue="#"
+            >
+              <option value="#" disabled hidden>
+                Choose a Category
+              </option>
+              {categories?.length > 0 &&
+                categories?.map(
+                  (category: {
+                    id: number;
+                    attributes: {
+                      name: string;
+                    };
+                  }) => (
+                    <option key={category.id} value={category.id}>
+                      {category?.attributes?.name}
+                    </option>
+                  )
+                )}
+            </select>
+          </div>
+
+          <TextEditor setBlogText={setBlogText} />
+
+          <div className="mt-8">
+            <Button
+              loading={isLoading}
+              disabled={isLoading}
+              className="h-11 w-full sm:h-12"
+            >
+              Create Blog
+            </Button>
+          </div>
+        </form>
+      </>
     </div>
   );
-};
-
-export default NewBlogUI;
+}

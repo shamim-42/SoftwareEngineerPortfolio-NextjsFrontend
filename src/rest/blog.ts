@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import { useMutation } from 'react-query';
+import { toast } from 'react-toastify';
 import client from './client';
 
 // export function useBlog() {
@@ -17,18 +17,33 @@ import client from './client';
 // }
 
 export const useNewBlog = () => {
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState(null);
   const { mutate, isLoading } = useMutation(client.blogData.newBlog, {
     onSuccess: (data) => {
-      setSuccess(true);
-      console.log(data);
+      toast.success('Blog Created Successfully!', {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+      });
     },
     onError: (error: Error) => {
-      setError(error);
+      toast.error(error?.message || 'Something went wrong!', {
+        position: 'top-center',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+      });
       console.log(error.message);
     },
   });
 
-  return { addNewBlog: mutate, isLoading, success, error, setError };
+  return { addNewBlog: mutate, isLoading };
 };

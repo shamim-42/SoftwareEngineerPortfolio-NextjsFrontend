@@ -3,18 +3,17 @@ import { GrGithub, GrLinkedinOption } from 'react-icons/gr';
 import Link from '../link';
 
 const HeroInformation = ({ basicData }: any) => {
-  // console.log({basicData})
   return (
     <div className="w-full text-center md:text-left">
-      {/* <h2 className="text-4xl font-semibold md:text-5xl ">{basicData.name}</h2>
+      <h2 className="text-4xl font-semibold md:text-5xl ">{basicData?.name}</h2>
       <h3 className="py-1 text-2xl font-medium text-[#515151] md:text-3xl">
-        {basicData.title}
+        {basicData?.title}
       </h3>
-      <p>{basicData.location}</p>
+      <p>{basicData?.location}</p>
       <div className="my-5 flex gap-3 md:gap-4">
         <Link
           className="inline-flex items-center gap-px rounded-lg text-center  text-white"
-          href={basicData.linkedin}
+          href={basicData?.linkedin || '/'}
           target="_blank"
         >
           <span className="rounded-l-lg bg-[#0288D1] py-2 px-2 text-[17px] font-medium md:text-[20px]">
@@ -26,7 +25,7 @@ const HeroInformation = ({ basicData }: any) => {
         </Link>
         <Link
           className="inline-flex items-center gap-px rounded-lg text-center  text-white"
-          href={basicData.github}
+          href={basicData?.github || '/'}
           target="_blank"
         >
           <span className="rounded-l-lg bg-[#4E5559] py-2 px-2 text-[17px] font-medium md:text-[20px]">
@@ -77,7 +76,7 @@ const HeroInformation = ({ basicData }: any) => {
 
       <div className="my-6 flex justify-center gap-3 md:justify-start md:gap-6">
         <Link
-          href={basicData.resume}
+          href={basicData?.resume || '/'}
           className="rounded-lg border border-black px-3 py-1.5 text-[14px] transition-colors hover:border-green-600 hover:bg-green-600 hover:text-white md:text-[16px]	"
           target="_blank"
         >
@@ -89,7 +88,7 @@ const HeroInformation = ({ basicData }: any) => {
         >
           Read My Blogs
         </Link>
-      </div> */}
+      </div>
     </div>
   );
 };

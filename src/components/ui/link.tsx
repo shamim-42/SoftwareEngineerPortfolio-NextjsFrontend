@@ -19,7 +19,7 @@ const Link: React.FC<LinkProps> = ({
   ...props
 }) => {
   return (
-    <NextLink href={href}>
+    <NextLink href={href || ''}>
       <a
         className={classNames(
           {

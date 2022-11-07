@@ -20,7 +20,7 @@ const Skill = ({ skillsData }: any) => {
         className="grid gap-4 md:mt-12 md:grid-cols-4 md:gap-1"
         ref={cardsRef}
       >
-        {skillsData.map((skills: Skills, index: number) => (
+        {skillsData?.map((skills: Skills, index: number) => (
           <SkillCard
             key={index}
             index={index}

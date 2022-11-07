@@ -1,9 +1,6 @@
 import React from 'react';
 
-type MODAL_VIEWS =
-  | 'REGISTER'
-  | 'LOGIN_VIEW'
-  | 'FORGOT_VIEW'
+type MODAL_VIEWS = 'REGISTER' | 'LOGIN_VIEW' | 'FORGOT_VIEW' | 'CATEGORY_FORM';
 
 interface State {
   view?: MODAL_VIEWS;
@@ -43,12 +40,14 @@ function modalReducer(state: State, action: Action): State {
 
 const ModalStateContext = React.createContext<State>(initialState);
 ModalStateContext.displayName = 'ModalStateContext';
+
 const ModalActionContext = React.createContext<
   React.Dispatch<Action> | undefined
 >(undefined);
+
 ModalActionContext.displayName = 'ModalActionContext';
 
-export const ModalProvider: React.FC = ({ children }) => {
+export const ModalProvider: React.FC = ({ children }: any) => {
   const [state, dispatch] = React.useReducer(modalReducer, initialState);
   return (
     <ModalStateContext.Provider value={state}>

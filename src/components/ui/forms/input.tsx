@@ -62,7 +62,7 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
           type={type}
           ref={ref}
           className={cn(
-            'flex w-full appearance-none items-center px-4 text-sm text-heading transition duration-300 ease-in-out focus:outline-none focus:ring-0',
+            'flex  w-full appearance-none items-center py-2 px-4 text-sm text-heading transition duration-300 ease-in-out focus:outline-none focus:ring-0',
             shadow && 'focus:shadow',
             variantClasses[variant],
             sizeClasses[dimension],

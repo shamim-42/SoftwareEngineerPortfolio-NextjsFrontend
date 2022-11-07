@@ -21,7 +21,7 @@ const Blog = ({ blogs }: any) => {
         </Link>
       </div>
       <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-6 lg:grid-cols-4">
-        {blogData.map(
+        {blogData?.map(
           (
             blog: {
               attributes: Blog;

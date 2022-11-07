@@ -1,8 +1,15 @@
 import { Key } from 'react';
 import { FiDelete, FiEdit } from 'react-icons/fi';
 import { IoMdAddCircleOutline } from 'react-icons/io';
+import { useModalAction } from '../modal/modal.context';
 
 const CategoryUI = ({ categories }: any) => {
+  const { openModal } = useModalAction();
+
+  function openCategoryModal() {
+    return openModal('CATEGORY_FORM');
+  }
+
   return (
     <div className="md:px-16">
       <div className=" rounded-md border">
@@ -14,7 +21,10 @@ const CategoryUI = ({ categories }: any) => {
               </th>
               <th scope="col" className="py-3 px-6"></th>
               <th scope="col" className="flex justify-end py-3 px-6">
-                <button className="flex items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100">
+                <button
+                  onClick={openCategoryModal}
+                  className="flex items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100"
+                >
                   <IoMdAddCircleOutline className="h-5 w-5 text-gray-500 transition duration-75 group-hover:text-gray-900" />
                   <span className="ml-3">Add New Category</span>
                 </button>
@@ -23,7 +33,7 @@ const CategoryUI = ({ categories }: any) => {
           </thead>
           <tbody>
             {categories?.length > 0 &&
-              categories.map(
+              categories?.map(
                 (category: {
                   id: Key;
                   attributes: {

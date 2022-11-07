@@ -3,14 +3,14 @@ import { AiFillEye, AiOutlineDelete } from 'react-icons/ai';
 import { BiEditAlt } from 'react-icons/bi';
 import Link from '../link';
 
-const ManageUI = ({ blogs }: any) => {
+const ManageUI = ({ blogs, deleteBlog }: any) => {
   console.log(blogs);
 
   return (
     <div className="grid gap-2 sm:grid-cols-1 md:grid-cols-3 md:gap-6">
-      {blogs.length > 0 &&
-        blogs.map((blog: { id: number; attributes: any }) => (
-          <div className="rounded-lg bg-white shadow-md">
+      {blogs?.length > 0 &&
+        blogs?.map((blog: { id: number; attributes: any }) => (
+          <div key={blog.id} className="rounded-lg bg-white shadow-md">
             <Image
               src={blog.attributes.thumbnail}
               alt="Blog Thumbnail"
@@ -44,7 +44,10 @@ const ManageUI = ({ blogs }: any) => {
                   <BiEditAlt className="h-5 w-5 text-gray-500 transition duration-75 group-hover:text-gray-900" />
                   <span className="ml-2">Edit</span>
                 </button>
-                <button className="flex items-center rounded-lg bg-gray-50 p-2 px-5 text-base font-normal text-gray-900 shadow hover:bg-gray-100">
+                <button
+                  onClick={() => deleteBlog(blog.id)}
+                  className="flex items-center rounded-lg bg-gray-50 p-2 px-5 text-base font-normal text-gray-900 shadow hover:bg-gray-100"
+                >
                   <AiOutlineDelete className="h-5 w-5 text-gray-500 transition duration-75 group-hover:text-gray-900" />
                   <span className="ml-2">Delete</span>
                 </button>

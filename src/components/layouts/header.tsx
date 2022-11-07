@@ -31,7 +31,7 @@ const Header = () => {
         <ul className="hidden shrink-0 items-center space-x-10 lg:flex">
           <li>
             <Link
-              href={basicData.github}
+              href={basicData?.github}
               className="text-blue-dark border-blue rounded border bg-white py-1.5 px-3 font-semibold transition hover:border-transparent hover:bg-black hover:text-white"
               aria-label="github"
             >
@@ -40,7 +40,7 @@ const Header = () => {
           </li>
           <li>
             <Link
-              href={basicData.linkedin}
+              href={basicData?.linkedin}
               className="text-blue-dark border-blue rounded border bg-white py-1.5 px-3 font-semibold transition hover:border-transparent hover:bg-[#0A66C2] hover:text-white"
               aria-label="Linkedin"
             >
@@ -59,7 +59,7 @@ const Header = () => {
           onClick={handleSidebar}
           aria-label="Login or Join to Teton private limited"
         >
-          {drawerView.display && drawerView.view === 'SIDEBAR_MAIN' ? (
+          {drawerView?.display && drawerView?.view === 'SIDEBAR_MAIN' ? (
             <BarsIcon className="h-10 w-10" />
           ) : (
             <BarCenterLeft className="h-10 w-10" />

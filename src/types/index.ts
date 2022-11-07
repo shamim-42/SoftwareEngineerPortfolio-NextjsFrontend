@@ -170,3 +170,7 @@ export interface BlogType {
   id: number;
   attributes: Blog;
 }
+
+export interface CategoryInput {
+  name: string;
+}
