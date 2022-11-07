@@ -25,27 +25,24 @@ export default function NewBlog({
           <Input
             label="Thumbnail URL"
             {...register('thumbnail', { required: true })}
-            type="file"
+            type="text"
             variant="outline"
             className="mb-5 "
           />
 
-          {/* <label
-            className="mb-2 block text-sm font-medium text-gray-900 "
-            htmlFor="user_avatar"
-          >
-            Upload file
+          <label className="mb-5 block rounded-md border px-3 py-1.5">
+            <span className="sr-only">Choose profile photo</span>
+            <input
+              type="file"
+              className="block w-full text-sm text-slate-500
+              file:mr-4 file:rounded-full file:border-0
+              file:bg-violet-50 file:py-2
+              file:px-4 file:text-sm
+              file:font-semibold file:text-violet-700
+              hover:file:bg-violet-100
+            "
+            />
           </label>
-          <input
-            className="block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm text-gray-900 focus:outline-none "
-            aria-describedby="user_avatar_help"
-            id="user_avatar"
-            type="file"
-          />
-          <div className="mt-1 text-sm text-gray-500 " id="user_avatar_help">
-            A profile picture is useful to confirm your are logged into your
-            account
-          </div> */}
 
           <Input
             label="Short Description"
