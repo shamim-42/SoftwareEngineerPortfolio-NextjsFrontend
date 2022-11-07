@@ -78,6 +78,11 @@ class Client {
   categoryData = {
     all: () => HttpClient.get(`${API_ENDPOINTS.CATEGORY}?populate=%2A`),
   };
+
+  media = {
+    thumbnail: (formData: any) =>
+      HttpClient.post(API_ENDPOINTS.UPLOAD, formData),
+  };
 }
 
 export default new Client();

@@ -1,6 +1,7 @@
 import DashboardLayout from '@/components/layouts/dasboard-layout';
 import NewBlog from '@/components/ui/blog/newBlog';
 import { useNewBlog } from '@/rest/blog';
+import client from '@/rest/client';
 import { useCategory } from '@/rest/main-hook';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -21,14 +22,31 @@ interface NewData {
 const newBlog = () => {
   const { register, handleSubmit, reset } = useForm();
   const [blogText, setBlogText] = useState('');
+  const [thumbnail, setThumbnail] = useState('');
   const { categoryList } = useCategory();
   const { addNewBlog, isLoading } = useNewBlog();
 
+  const uploadThumbnail = (e: { target: { files: (string | Blob)[] } }) => {
+    const formData = new FormData();
+    if (e.target.files[0]) {
+      formData.append('files', e.target.files[0]);
+      client.media.thumbnail(formData).then((res: any) => {
+        if (res[0]?.url) {
+          const url = process.env.NEXT_PUBLIC_REST_API_ENDPOINT + res[0]?.url;
+          setThumbnail(url);
+        }
+      });
+    }
+  };
+
   function onSubmit(data: NewData) {
+    if (!thumbnail || !blogText) {
+      return;
+    }
     const newData = {
       data: {
         title: data.title,
-        thumbnail: data.thumbnail,
+        thumbnail: thumbnail,
         shortDescription: data.shortDescription,
         content: blogText,
         category: data.category,
@@ -36,6 +54,8 @@ const newBlog = () => {
     };
     addNewBlog(newData);
     reset();
+    setBlogText('');
+    setThumbnail('');
   }
 
   return (
@@ -47,6 +67,8 @@ const newBlog = () => {
         onSubmit={onSubmit}
         handleSubmit={handleSubmit}
         isLoading={isLoading}
+        uploadThumbnail={uploadThumbnail}
+        thumbnail={thumbnail}
       />
     </DashboardLayout>
   );

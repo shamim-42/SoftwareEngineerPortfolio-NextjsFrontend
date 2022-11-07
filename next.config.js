@@ -14,6 +14,7 @@ const nextConfig = {
   images: {
     domains: [
       'localhost:1337',
+      'localhost',
       'res.cloudinary.com',
       '1.bp.blogspot.com',
     ],

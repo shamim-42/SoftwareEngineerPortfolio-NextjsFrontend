@@ -1,5 +1,6 @@
 import Button from '@/components/ui/button';
 import Input from '@/components/ui/forms/input';
+import Image from 'next/image';
 import TextEditor from '../editor/editor';
 
 export default function NewBlog({
@@ -9,6 +10,8 @@ export default function NewBlog({
   handleSubmit,
   register,
   isLoading,
+  uploadThumbnail,
+  thumbnail,
 }: any) {
   return (
     <div className="mx-auto flex h-full min-h-screen w-screen flex-col justify-center bg-light py-6 px-5 drop-shadow-lg sm:p-8 md:h-auto md:min-h-0 md:max-w-[790px] md:rounded-xl">
@@ -22,27 +25,35 @@ export default function NewBlog({
             variant="outline"
             className="mb-5"
           />
-          <Input
-            label="Thumbnail URL"
-            {...register('thumbnail', { required: true })}
-            type="text"
-            variant="outline"
-            className="mb-5 "
-          />
 
-          <label className="mb-5 block rounded-md border px-3 py-1.5">
-            <span className="sr-only">Choose profile photo</span>
-            <input
-              type="file"
-              className="block w-full text-sm text-slate-500
+          <p className="text-md mb-5 block text-left font-semibold leading-none text-body-dark">
+            Thumbnail Photo
+          </p>
+          {thumbnail ? (
+            <div className="mb-5 flex items-center">
+              <Image
+                src={thumbnail}
+                className="rounded"
+                width="480px"
+                height="300px"
+              />
+            </div>
+          ) : (
+            <label className="mb-5 block rounded-md border px-3 py-1.5">
+              <span className="sr-only">Choose profile photo</span>
+              <input
+                onChange={uploadThumbnail}
+                type="file"
+                className="block w-full text-sm text-slate-500
               file:mr-4 file:rounded-full file:border-0
               file:bg-violet-50 file:py-2
               file:px-4 file:text-sm
               file:font-semibold file:text-violet-700
               hover:file:bg-violet-100
             "
-            />
-          </label>
+              />
+            </label>
+          )}
 
           <Input
             label="Short Description"

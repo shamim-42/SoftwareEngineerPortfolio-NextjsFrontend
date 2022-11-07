@@ -18,4 +18,5 @@ export const API_ENDPOINTS = {
   EXPERIENCE: '/experiences',
   BLOGS: '/blogs',
   CATEGORY: '/categories',
+  UPLOAD: '/upload',
 };
