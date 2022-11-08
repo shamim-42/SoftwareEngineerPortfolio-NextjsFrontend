@@ -4,7 +4,7 @@ import { BiEditAlt } from 'react-icons/bi';
 import Link from '../link';
 
 const ManageUI = ({ blogs, deleteBlog }: any) => {
-  console.log(blogs);
+  // console.log(blogs);
 
   return (
     <div className="grid gap-2 sm:grid-cols-1 md:grid-cols-3 md:gap-6">

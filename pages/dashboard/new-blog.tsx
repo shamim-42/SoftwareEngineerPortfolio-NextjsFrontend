@@ -32,8 +32,7 @@ const newBlog = () => {
       formData.append('files', e.target.files[0]);
       client.media.thumbnail(formData).then((res: any) => {
         if (res[0]?.url) {
-          const url = process.env.NEXT_PUBLIC_REST_API_ENDPOINT + res[0]?.url;
-          setThumbnail(url);
+          setThumbnail(res[0]?.url);
         }
       });
     }

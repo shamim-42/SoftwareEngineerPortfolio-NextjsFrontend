@@ -15,6 +15,7 @@ const nextConfig = {
     domains: [
       'localhost:1337',
       'localhost',
+      'shamims-world.s3.ap-southeast-1.amazonaws.com',
       'res.cloudinary.com',
       '1.bp.blogspot.com',
     ],
