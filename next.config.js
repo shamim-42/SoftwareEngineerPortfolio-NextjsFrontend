@@ -28,6 +28,7 @@ const nextConfig = {
       ignoreDuringBuilds: true,
     },
   }),
+  staticPageGenerationTimeout: 1000,
 };
 
 module.exports = nextConfig;

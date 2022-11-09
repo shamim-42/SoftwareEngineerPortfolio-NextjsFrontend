@@ -2,9 +2,10 @@ import { AUTH_TOKEN_KEY } from '@/lib/constants';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import Router from 'next/router';
+import config from '../../../dev-config/config.json';
 
 const Axios = axios.create({
-  baseURL: `${process.env.NEXT_PUBLIC_REST_API_ENDPOINT}/api/`,
+  baseURL: `${config.baseUrl}/api/`,
   timeout: 5000,
   headers: {
     'Content-Type': 'application/json',

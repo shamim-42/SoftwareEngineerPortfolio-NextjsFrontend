@@ -17,7 +17,7 @@ const ManageBlog = (props: { dehydratedState: { queries: any[] } }) => {
   const deleteBlog = (id: number) => {
     client.blogData.deleteBlog(id).then((res: any) => {
       if (res?.data) {
-        toast.error('Blog Deleted Successfully!', {
+        toast.success('Blog Deleted Successfully!', {
           position: 'top-center',
           autoClose: 5000,
           hideProgressBar: false,
