@@ -11,6 +11,7 @@ const Axios = axios.create({
     'Content-Type': 'application/json',
   },
 });
+
 // Change request data/error here
 Axios.interceptors.request.use((config) => {
   const token = Cookies.get(AUTH_TOKEN_KEY);

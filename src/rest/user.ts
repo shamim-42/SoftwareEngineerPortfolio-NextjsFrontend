@@ -38,11 +38,11 @@ export function useLogin() {
 
   const { mutate, isLoading } = useMutation(client.users.login, {
     onSuccess: (data) => {
-      if (!data.token) {
+      if (!data.jwt) {
         setServerError('The credentials was wrong!');
         return;
       }
-      setToken(data.token);
+      setToken(data.jwt);
       setAuthorized(true);
       closeModal();
     },
@@ -107,6 +107,7 @@ export function useRegister() {
 
   return { mutate, isLoading, formError, setFormError };
 }
+
 export function useLogout() {
   const queryClient = useQueryClient();
   const { setToken } = useToken();
@@ -117,13 +118,13 @@ export function useLogout() {
       if (data) {
         setToken('');
         setAuthorized(false);
-        queryClient.refetchQueries(API_ENDPOINTS.USERS_ME);
       }
     },
     onSettled: () => {
       queryClient.clear();
     },
   });
+
   function handleLogout() {
     socialLoginSignOut({ redirect: false });
     signOut();

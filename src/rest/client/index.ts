@@ -19,7 +19,7 @@ class Client {
   users = {
     me: () => HttpClient.get<User>(API_ENDPOINTS.USERS_ME),
     login: (input: LoginUserInput) =>
-      HttpClient.post<AuthResponse>(API_ENDPOINTS.USERS_LOGIN, input),
+      HttpClient.post(API_ENDPOINTS.USERS_LOGIN, input),
     socialLogin: (input: SocialLoginInputType) =>
       HttpClient.post<AuthResponse>(API_ENDPOINTS.SOCIAL_LOGIN, input),
     register: (input: RegisterUserInput) =>

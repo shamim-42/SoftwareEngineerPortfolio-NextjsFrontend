@@ -16,6 +16,7 @@ const ManageBlog = (props: { dehydratedState: { queries: any[] } }) => {
 
   const deleteBlog = (id: number) => {
     client.blogData.deleteBlog(id).then((res: any) => {
+      console.log(res);
       if (res?.data) {
         toast.success('Blog Deleted Successfully!', {
           position: 'top-center',
@@ -32,6 +33,8 @@ const ManageBlog = (props: { dehydratedState: { queries: any[] } }) => {
           const blogs = prev.filter((blog: { id: number }) => blog.id !== id);
           return blogs;
         });
+      } else if (res?.error) {
+        console.log(res?.error);
       }
     });
   };

@@ -1,9 +1,9 @@
-import Cookies from 'js-cookie';
 import { AUTH_TOKEN_KEY } from '@/lib/constants';
+import Cookies from 'js-cookie';
 export function useToken() {
   return {
     setToken(token: string) {
-      Cookies.set(AUTH_TOKEN_KEY, token, { expires: 1 }); // expires in 24 hours
+      Cookies.set(AUTH_TOKEN_KEY, token, { expires: 7 }); // expires in 24 hours
     },
     getToken() {
       return Cookies.get(AUTH_TOKEN_KEY);

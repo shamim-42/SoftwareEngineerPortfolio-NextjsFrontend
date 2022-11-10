@@ -10,4 +10,6 @@ const Dashboard = () => {
   );
 };
 
+Dashboard.authenticationRequired = true;
+
 export default Dashboard;

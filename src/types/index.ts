@@ -60,7 +60,7 @@ export interface User {
   };
 }
 export interface AuthResponse {
-  token: string;
+  jwt: string;
   permissions: string[];
 }
 export interface UpdateUserInput extends Partial<User> {
@@ -68,7 +68,7 @@ export interface UpdateUserInput extends Partial<User> {
 }
 
 export interface LoginUserInput {
-  email: string;
+  identifier: string;
   password: string;
 }
 
@@ -110,10 +110,6 @@ export interface UpdateUserInput extends Partial<User> {
   id: string;
 }
 
-export interface LoginUserInput {
-  email: string;
-  password: string;
-}
 export interface PasswordChangeResponse {
   success: boolean;
   message: string;
