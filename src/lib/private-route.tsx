@@ -1,11 +1,16 @@
 import { Routes } from '@/config/routes';
-import { useUser } from '@/rest/user';
+import { authorizationAtom } from '@/store/authorization-atom';
+import { useAtom } from 'jotai';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 
-const PrivateRoute: React.FC = ({ children }) => {
+type Props = {
+  children: ReactNode;
+};
+
+const PrivateRoute: React.FC<Props> = ({ children }) => {
   const router = useRouter();
-  const { isAuthorized } = useUser();
+  const [isAuthorized] = useAtom(authorizationAtom);
 
   useEffect(() => {
     if (!isAuthorized) {

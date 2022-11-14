@@ -10,26 +10,10 @@ import { useAtom } from 'jotai';
 import { useStateMachine } from 'little-state-machine';
 import { signOut as socialLoginSignOut } from 'next-auth/react';
 import { useState } from 'react';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
 import client from './client';
-import { API_ENDPOINTS } from './client/api-endpoints';
 
-export function useUser() {
-  const [isAuthorized] = useAtom(authorizationAtom);
-  const { data, isLoading, error } = useQuery(
-    [API_ENDPOINTS.USERS_ME],
-    client.users.me,
-    {
-      enabled: isAuthorized,
-      onError: (err) => {
-        console.log(err);
-      },
-    }
-  );
-  //TODO: do some improvement here
-  return { me: data, isLoading, error, isAuthorized };
-}
 export function useLogin() {
   const [_, setAuthorized] = useAtom(authorizationAtom);
   const { closeModal } = useModalAction();

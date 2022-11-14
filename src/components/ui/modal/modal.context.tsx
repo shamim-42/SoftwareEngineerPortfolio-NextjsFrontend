@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 type MODAL_VIEWS = 'REGISTER' | 'LOGIN_VIEW' | 'FORGOT_VIEW' | 'CATEGORY_FORM';
+type Props = {
+  children: ReactNode;
+};
 
 interface State {
   view?: MODAL_VIEWS;
   data?: any;
   isOpen: boolean;
 }
+
 type Action =
   | { type: 'open'; view?: MODAL_VIEWS; payload?: any }
   | { type: 'close' };
@@ -47,7 +51,7 @@ const ModalActionContext = React.createContext<
 
 ModalActionContext.displayName = 'ModalActionContext';
 
-export const ModalProvider: React.FC = ({ children }: any) => {
+export const ModalProvider: React.FC<Props> = ({ children }) => {
   const [state, dispatch] = React.useReducer(modalReducer, initialState);
   return (
     <ModalStateContext.Provider value={state}>

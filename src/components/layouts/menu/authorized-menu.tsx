@@ -1,28 +1,23 @@
-import { Fragment } from 'react';
-import { Menu, Transition } from '@headlessui/react';
-import { siteSettings } from '@/config/site';
-import Avatar from '@/components/ui/avatar';
-import { useRouter } from 'next/router';
-import cn from 'classnames';
-import { avatarPlaceholder } from '@/lib/placeholders';
 import { UserOutlinedIcon } from '@/components/icons/user-outlined';
-import { useLogout, useUser } from '@/rest/user';
+import Avatar from '@/components/ui/avatar';
+import { siteSettings } from '@/config/site';
+import { avatarPlaceholder } from '@/lib/placeholders';
+import { useLogout } from '@/rest/user';
+import { Menu, Transition } from '@headlessui/react';
+import cn from 'classnames';
+import { useRouter } from 'next/router';
+import { Fragment } from 'react';
 
 const AuthorizedMenu: React.FC<{ minimal?: boolean }> = ({ minimal }) => {
   const { mutate: logout } = useLogout();
-  const { me } = useUser();
   const router = useRouter();
 
   function handleClick(path: string) {
     router.push(path);
   }
 
-
   return (
-    <Menu
-      as="div"
-      className="relative inline-block text-left"
-    >
+    <Menu as="div" className="relative inline-block text-left">
       <Menu.Button className="flex items-center focus:outline-none">
         {minimal ? (
           <UserOutlinedIcon className="h-5 w-5" />
@@ -48,7 +43,7 @@ const AuthorizedMenu: React.FC<{ minimal?: boolean }> = ({ minimal }) => {
         <Menu.Items
           as="ul"
           className={cn(
-            'absolute mt-1 w-48 rounded bg-white pb-4 shadow-700 focus:outline-none right-0 origin-top-right '
+            'absolute right-0 mt-1 w-48 origin-top-right rounded bg-white pb-4 shadow-700 focus:outline-none '
           )}
         >
           {siteSettings.authorizedLinks.map(({ href, label }) => (
@@ -58,7 +53,7 @@ const AuthorizedMenu: React.FC<{ minimal?: boolean }> = ({ minimal }) => {
                   <button
                     onClick={() => handleClick(href)}
                     className={cn(
-                      'block w-full py-2.5 px-6 text-sm font-semibold capitalize text-heading transition duration-200 hover:text-accent focus:outline-none text-left',
+                      'block w-full py-2.5 px-6 text-left text-sm font-semibold capitalize text-heading transition duration-200 hover:text-accent focus:outline-none',
                       active ? 'text-accent' : 'text-heading'
                     )}
                   >
@@ -73,7 +68,7 @@ const AuthorizedMenu: React.FC<{ minimal?: boolean }> = ({ minimal }) => {
               <button
                 onClick={() => logout()}
                 className={cn(
-                  'block w-full py-2.5 px-6 text-sm font-semibold capitalize text-heading transition duration-200 hover:text-accent focus:outline-none text-left'
+                  'block w-full py-2.5 px-6 text-left text-sm font-semibold capitalize text-heading transition duration-200 hover:text-accent focus:outline-none'
                 )}
               >
                 Logout

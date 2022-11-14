@@ -14,6 +14,8 @@ const ManagedModal = () => {
   const { isOpen, view, data } = useModalState();
   const { closeModal } = useModalAction();
 
+  console.log(data);
+
   return (
     <Modal open={isOpen} onClose={closeModal}>
       {view === 'LOGIN_VIEW' && <Login />}

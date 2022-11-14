@@ -10,7 +10,7 @@ const categoryFormSchema = yup.object().shape({
 });
 
 export default function CreateCategory() {
-  const { addNewCategory, isLoading } = useNewCategory();
+  const { addNewCategory, newCategory } = useNewCategory();
 
   function onSubmit({ name }: any) {
     const newData = {

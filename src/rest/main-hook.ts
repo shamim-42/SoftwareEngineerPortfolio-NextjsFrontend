@@ -1,4 +1,5 @@
 import { useModalAction } from '@/components/ui/modal/modal.context';
+import { useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
 import { toast } from 'react-toastify';
 import client from './client';
@@ -18,8 +19,10 @@ export const useCategory = () => {
 
 export const useNewCategory = () => {
   const { closeModal } = useModalAction();
+  const [newCategory, setNewCategory] = useState({});
   const { mutate, isLoading } = useMutation(client.categoryData.newCategory, {
-    onSuccess: () => {
+    onSuccess: (data) => {
+      setNewCategory(data?.data);
       toast.success('Category Created Successfully!', {
         position: 'top-center',
         autoClose: 3000,
@@ -47,5 +50,5 @@ export const useNewCategory = () => {
     },
   });
 
-  return { addNewCategory: mutate, isLoading };
+  return { addNewCategory: mutate, isLoading, newCategory };
 };

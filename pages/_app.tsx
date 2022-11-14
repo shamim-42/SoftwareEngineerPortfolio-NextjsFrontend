@@ -11,41 +11,40 @@ import { SessionProvider } from 'next-auth/react';
 import type { AppProps } from 'next/app';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import ThemeContextProvider from '../contexts/ThemeContext';
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
+
 function CustomApp({
   Component,
   pageProps: { session, ...pageProps },
 }: AppPropsWithLayout) {
   // Use the layout defined at the page level, if available
   const getLayout = Component.getLayout ?? ((page) => page);
+
   const authenticationRequired = Component.authenticationRequired ?? false;
 
   return (
     <SessionProvider session={session}>
-      <ThemeContextProvider>
-        <QueryProvider pageProps={pageProps}>
-          <ModalProvider>
-            <>
-              <DefaultSeo />
-              {authenticationRequired ? (
-                <PrivateRoute>
-                  {getLayout(<Component {...pageProps} />)}
-                </PrivateRoute>
-              ) : (
-                getLayout(<Component {...pageProps} />)
-              )}
-              <ManagedModal />
-              <ManagedDrawer />
-              <ToastContainer autoClose={2000} theme="colored" />
-              <SocialLogin />
-            </>
-          </ModalProvider>
-        </QueryProvider>
-      </ThemeContextProvider>
+      <QueryProvider pageProps={pageProps}>
+        <ModalProvider>
+          <>
+            <DefaultSeo />
+            {authenticationRequired ? (
+              <PrivateRoute>
+                {getLayout(<Component {...pageProps} />)}
+              </PrivateRoute>
+            ) : (
+              getLayout(<Component {...pageProps} />)
+            )}
+            <ManagedModal />
+            <ManagedDrawer />
+            <ToastContainer autoClose={2000} theme="colored" />
+            <SocialLogin />
+          </>
+        </ModalProvider>
+      </QueryProvider>
     </SessionProvider>
   );
 }
