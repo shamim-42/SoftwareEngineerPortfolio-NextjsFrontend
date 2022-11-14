@@ -8,7 +8,7 @@ const HeroSection = ({ basicData }: any) => {
         <Image
           src={
             basicData?.image ||
-            'https://res.cloudinary.com/doer1ffjl/image/upload/v1664441064/Portfolio/shamim_2_frqgj0.png'
+            'https://shamims-world.s3.ap-southeast-1.amazonaws.com/personal-sites-images/shamim_2_fbb2c326fa.png'
           }
           className="rounded-full"
           width="480px"

@@ -26,6 +26,7 @@ const newBlog = () => {
   const { categoryList } = useCategory();
   const { addNewBlog, isLoading } = useNewBlog();
 
+  // Upload Thumbnail function
   const uploadThumbnail = (e: { target: { files: (string | Blob)[] } }) => {
     const formData = new FormData();
     if (e.target.files[0]) {
@@ -38,6 +39,7 @@ const newBlog = () => {
     }
   };
 
+  // Submit your new blog
   function onSubmit(data: NewData) {
     if (!thumbnail || !blogText) {
       return;
@@ -68,6 +70,7 @@ const newBlog = () => {
         isLoading={isLoading}
         uploadThumbnail={uploadThumbnail}
         thumbnail={thumbnail}
+        blogText={blogText}
       />
     </DashboardLayout>
   );

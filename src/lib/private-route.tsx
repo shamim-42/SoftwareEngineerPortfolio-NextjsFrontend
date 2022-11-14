@@ -1,3 +1,4 @@
+import { Routes } from '@/config/routes';
 import { useUser } from '@/rest/user';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
@@ -8,7 +9,7 @@ const PrivateRoute: React.FC = ({ children }) => {
 
   useEffect(() => {
     if (!isAuthorized) {
-      router.push('/login');
+      router.push(Routes.login);
     }
   }, []);
 

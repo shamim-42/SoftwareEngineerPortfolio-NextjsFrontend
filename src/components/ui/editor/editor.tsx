@@ -5,7 +5,7 @@ const SunEditor = dynamic(() => import('suneditor-react'), {
   ssr: false,
 });
 
-const TextEditor = ({ setBlogText }: any) => {
+const TextEditor = ({ setBlogText, blogText }: any) => {
   const handleOnChange = (data: string) => {
     setBlogText(data);
   };
@@ -58,6 +58,7 @@ const TextEditor = ({ setBlogText }: any) => {
             ['removeFormat', 'undo', 'redo', 'save'],
           ],
         }}
+        setContents={blogText}
       />
     </div>
   );

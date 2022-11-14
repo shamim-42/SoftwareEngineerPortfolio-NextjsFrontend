@@ -12,6 +12,7 @@ export default function NewBlog({
   isLoading,
   uploadThumbnail,
   thumbnail,
+  blogText,
 }: any) {
   return (
     <div className="mx-auto flex h-full min-h-screen w-screen flex-col justify-center bg-light py-6 px-5 drop-shadow-lg sm:p-8 md:h-auto md:min-h-0 md:max-w-[790px] md:rounded-xl">
@@ -97,7 +98,7 @@ export default function NewBlog({
             </select>
           </div>
 
-          <TextEditor setBlogText={setBlogText} />
+          <TextEditor blogText={blogText} setBlogText={setBlogText} />
 
           <div className="mt-8">
             <Button
