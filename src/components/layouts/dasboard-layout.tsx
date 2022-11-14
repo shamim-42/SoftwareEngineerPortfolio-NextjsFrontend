@@ -10,7 +10,7 @@ import { ImBlog } from 'react-icons/im';
 import { toast } from 'react-toastify';
 import Link from '../ui/link';
 
-export default function DashboardLayout({ children }: React.PropsWithChildren) {
+function DashboardLayout({ children }: React.PropsWithChildren) {
   const router = useRouter();
   const { setToken } = useToken();
   const [_, setAuthorized] = useAtom(authorizationAtom);
@@ -54,7 +54,7 @@ export default function DashboardLayout({ children }: React.PropsWithChildren) {
               </li>
               <li>
                 <Link
-                  href="/dashboard/manage"
+                  href="/dashboard"
                   className="flex items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100"
                 >
                   <FaBlog className="h-6 w-6 text-gray-500 transition duration-75 group-hover:text-gray-900" />
@@ -98,3 +98,5 @@ export default function DashboardLayout({ children }: React.PropsWithChildren) {
     </div>
   );
 }
+
+export default DashboardLayout;

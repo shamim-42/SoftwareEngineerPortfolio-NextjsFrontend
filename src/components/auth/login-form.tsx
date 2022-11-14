@@ -6,6 +6,7 @@ import PasswordInput from '@/components/ui/forms/password-input';
 import { useModalAction } from '@/components/ui/modal/modal.context';
 import { useLogin } from '@/rest/user';
 import type { LoginUserInput } from '@/types';
+import { useRouter } from 'next/router';
 import * as yup from 'yup';
 
 const loginFormSchema = yup.object().shape({
@@ -16,6 +17,7 @@ const loginFormSchema = yup.object().shape({
 });
 
 function LoginForm() {
+  const router = useRouter();
   const { openModal } = useModalAction();
   const { mutate: login, isLoading, serverError, setServerError } = useLogin();
 
@@ -24,6 +26,7 @@ function LoginForm() {
       identifier,
       password,
     });
+    router.back();
   }
 
   return (

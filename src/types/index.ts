@@ -19,6 +19,10 @@ export interface BlogPageProps {
   dehydratedState: any;
 }
 
+export interface CategoryPageProps {
+  dehydratedState: any;
+}
+
 export interface QueryOptions {
   page?: number;
   limit?: number;

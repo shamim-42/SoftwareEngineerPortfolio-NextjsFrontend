@@ -77,6 +77,10 @@ class Client {
 
   categoryData = {
     all: () => HttpClient.get(`${API_ENDPOINTS.CATEGORY}?populate=%2A`),
+    deleteCategory: (id: any) =>
+      HttpClient.delete(`${API_ENDPOINTS.CATEGORY}/${id}`),
+    newCategory: (category: any) =>
+      HttpClient.post(API_ENDPOINTS.CATEGORY, category),
   };
 
   media = {

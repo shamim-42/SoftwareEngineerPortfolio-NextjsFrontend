@@ -73,4 +73,6 @@ const newBlog = () => {
   );
 };
 
+newBlog.authenticationRequired = true;
+
 export default newBlog;

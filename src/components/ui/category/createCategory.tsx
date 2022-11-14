@@ -1,6 +1,7 @@
 import Button from '@/components/ui/button';
 import { Form } from '@/components/ui/forms/form';
 import Input from '@/components/ui/forms/input';
+import { useNewCategory } from '@/rest/main-hook';
 import { CategoryInput } from '@/types';
 import * as yup from 'yup';
 
@@ -9,8 +10,15 @@ const categoryFormSchema = yup.object().shape({
 });
 
 export default function CreateCategory() {
+  const { addNewCategory, isLoading } = useNewCategory();
+
   function onSubmit({ name }: any) {
-    console.log(name);
+    const newData = {
+      data: {
+        name: name,
+      },
+    };
+    addNewCategory(newData);
   }
 
   return (
